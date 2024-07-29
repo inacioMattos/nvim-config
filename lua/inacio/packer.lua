@@ -7,6 +7,8 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use 'fxn/vim-monochrome'
+
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.2',
   -- or                            , branch = '0.1.x',
@@ -28,7 +30,6 @@ return require('packer').startup(function(use)
       ts_update()
     end,}
 
-  use("theprimeagen/harpoon")
   use("theprimeagen/vim-be-good")
 
   use('mbbill/undotree')
