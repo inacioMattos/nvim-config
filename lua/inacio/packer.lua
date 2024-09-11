@@ -9,10 +9,20 @@ return require('packer').startup(function(use)
 
   use 'fxn/vim-monochrome'
 
+  use 'mg979/vim-visual-multi'
+
+  use 'lervag/vimtex'
+
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.2',
   -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  use {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
   }
 
   use({

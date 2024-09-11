@@ -41,6 +41,14 @@ vim.keymap.set("n", "Q", "<nop>")
 --     vim.cmd("so")
 -- end)
 
+-- harpoon!
+local harpoon = require("harpoon")
+vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 -- inacio
 
@@ -177,3 +185,29 @@ end
 
 -- Set the keymap for visual line mode to remove a tab
 vim.keymap.set('x', '<S-Tab>', remove_tab, { noremap = true, silent = true })
+
+
+-- Define a command to insert LaTeX snippet
+vim.api.nvim_set_keymap('n', '<Leader>lt', '<ESC>:lua InsertLatexSnippet()<CR>', { noremap = true, silent = true })
+
+function InsertLatexSnippet()
+  vim.api.nvim_input('i\\textbf{\\textit{}}<ESC>3hi')
+end
+
+-- stop word search
+vim.keymap.set('n', '<leader><S-f>', '<ESC>:nohlsearch<CR>', { noremap = true, silent = true })
+
+-- new lines ENTER when in normal mode
+vim.keymap.set('n', '<CR>', function()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local line = cursor[1]
+    vim.api.nvim_buf_set_lines(0, line - 1, line - 1, false, {""})
+    vim.api.nvim_win_set_cursor(0, {line, 0})
+end, { noremap = true, silent = true, desc = "Insert line above" })
+
+vim.keymap.set('n', '<Leader><CR>', function()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local line = cursor[1]
+    vim.api.nvim_buf_set_lines(0, line, line, false, {""})
+    vim.api.nvim_win_set_cursor(0, {line + 1, 0})
+end, { noremap = true, silent = true, desc = "Insert line below" })
