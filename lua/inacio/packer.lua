@@ -25,6 +25,18 @@ return require('packer').startup(function(use)
     dependencies = { "nvim-lua/plenary.nvim" }
   }
 
+
+  use { 'echasnovski/mini.files', version = '*' }
+  use { 'echasnovski/mini.colors', version = '*' }
+  use { 'echasnovski/mini.base16', version = '*' }
+  use { 'echasnovski/mini.icons', version = false }
+
+  use {
+	  "jesseleite/nvim-noirbuddy",
+	  requires = { "tjdevries/colorbuddy.nvim" }
+	}
+
+--[[
   use({
 	  'rose-pine/neovim',
 	  as = 'rose-pine',
@@ -32,7 +44,7 @@ return require('packer').startup(function(use)
 		  vim.cmd('colorscheme rose-pine')
 	  end
   })
-
+--]]
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()

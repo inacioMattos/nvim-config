@@ -211,3 +211,9 @@ vim.keymap.set('n', '<Leader><CR>', function()
     vim.api.nvim_buf_set_lines(0, line, line, false, {""})
     vim.api.nvim_win_set_cursor(0, {line + 1, 0})
 end, { noremap = true, silent = true, desc = "Insert line below" })
+
+
+
+vim.keymap.set('n', "'", function ()
+  MiniFiles.open()
+end, { noremap = true })

@@ -1,3 +1,72 @@
+require('mini.icons').setup({ 
+  style = 'glyph',
+})
+
+require('noirbuddy').setup {
+  preset = 'miami-nights',
+
+  colors = {
+    primary = '#5f8787',
+  },
+}
+
+require('mini.files').setup({
+  mappings = {
+    close       = "'",
+    go_in       = 'ç',  -- Changed to 'ç' to expand entry
+    go_in_plus  = 'Ç',  -- Changed to 'Ç' for consistency
+    go_out      = 'j',  -- Changed to 'j' to go to parent directory
+    go_out_plus = 'J',  -- Changed to 'J' for consistency
+    mark_goto   = "=",
+    mark_set    = 'm',
+    reset       = '<BS>',
+    reveal_cwd  = '@',
+    show_help   = 'g?',
+    synchronize = 's',
+    trim_left   = '<',
+    trim_right  = '>',
+  },
+
+  -- Customization of explorer windows
+  windows = {
+    -- Maximum number of windows to show side by side
+    max_number = math.huge,
+    -- Whether to show preview of file/directory under cursor
+    preview = true,
+    -- Width of focused window
+    width_focus = 50,
+    -- Width of non-focused window
+    width_nofocus = 15,
+    -- Width of preview window
+    width_preview = 50,
+  },
+})
+
+
+--[[
+require('mini.base16').setup({
+  palette = {
+        base00 = "#262626",
+        base01 = "#303030",
+        base02 = "#333333",
+        base03 = "#6C6C6C",
+        base04 = "#787878",
+        base05 = "#BCBCBC",
+        base06 = "#C9C9C9",
+        base07 = "#FFFFFF",
+        base08 = "#5F8787",
+        base09 = "#FF8700",
+        base0A = "#5F8787",
+        base0B = "#87AF87",
+        base0C = "#5F875F",
+        base0D = "#FFFFAF",
+        base0E = "#87AFD7",
+        base0F = "#5F87AF",
+      },
+})
+--]]
+
+--- lsp
 local lsp = require("lsp-zero")
 
 local lspconfig = require('lspconfig')
@@ -6,10 +75,8 @@ lspconfig.zls.setup{}
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
   'clangd',
   -- 'gopls',
-  'eslint',
   'rust_analyzer',
 })
 
