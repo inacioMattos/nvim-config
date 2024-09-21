@@ -1,7 +1,33 @@
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.git_files, {})
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+
+vim.keymap.set('n', '<leader>pf', function()
+    local function is_git_repo()
+        vim.fn.system("git rev-parse --is-inside-work-tree")
+        return vim.v.shell_error == 0
+    end
+
+    local opts = {
+        file_ignore_patterns = { "node_modules" }
+    }
+
+    if is_git_repo() then
+        builtin.git_files(opts)
+    else
+        builtin.find_files(opts)
+    end
+end, {})
+
+vim.keymap.set('n', '<C-p>', function()
+    builtin.find_files({ file_ignore_patterns = { "node_modules" } })
+end, {})
+
 vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+    builtin.grep_string({ 
+        search = vim.fn.input("Grep > "),
+        file_ignore_patterns = { "node_modules" }
+    })
 end)
-vim.keymap.set('n', '<leader>pa', builtin.live_grep, {})
+
+vim.keymap.set('n', '<leader>pa', function()
+    builtin.live_grep({ file_ignore_patterns = { "node_modules" } })
+end, {})

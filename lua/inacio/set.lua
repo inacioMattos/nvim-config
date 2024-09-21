@@ -28,7 +28,8 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+-- the vertical bar that tracks how long a line is
+-- vim.opt.colorcolumn = "80"
 
 local vim = vim
 local opt = vim.opt
