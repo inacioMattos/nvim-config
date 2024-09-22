@@ -26,7 +26,7 @@ require('mini.files').setup({
     reset       = '<BS>',
     reveal_cwd  = '@',
     show_help   = 'g?',
-    synchronize = 's',
+    synchronize = 'y',
     trim_left   = '<',
     trim_right  = '>',
   },
