@@ -10,6 +10,7 @@ function LightMode()
 	  preset = 'miami-nights',
 
 	  colors = {
+      primary = '#61adad',
 	    background = '#fafafa',
 	    noir_9 = '#C2C2C2', -- `noir_0` is light for dark themes, and dark for light themes
 	    noir_8 = '#ADADAD',

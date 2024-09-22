@@ -87,7 +87,7 @@ vim.keymap.set("v", "<M-u>", "<C-r>")
 vim.keymap.set("i", "·", "<C-\\><C-n>", { noremap = true })
 
 -- option+backspace but in vim insert mode
-vim.keymap.set('i', 'ckspace', '<C-w>')
+-- vim.keymap.set('i', 'ckspace', '<C-w>')
 
 vim.keymap.set('i', '<M-q>', '/')
 
@@ -129,13 +129,93 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = update_buffer_history
 })
 
--- Function to switch to the last buffer
-local function switch_to_last_buffer()
-  if #buffer_history > 1 then
-    local last_buffer = buffer_history[#buffer_history - 1]
-    vim.cmd('buffer ' .. last_buffer)
+
+-- Define excluded filetypes
+local excluded_filetypes = { 'minifiles' }  -- Add more filetypes if needed
+
+-- Initialize buffer history
+local buffer_history = {}
+
+-- Function to add buffer to history
+local function add_to_history(buf)
+  if not vim.api.nvim_buf_is_valid(buf) then
+    return
+  end
+
+  local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+  if vim.tbl_contains(excluded_filetypes, ft) then
+    return
+  end
+
+  -- Remove buffer if already in history
+  for i, b in ipairs(buffer_history) do
+    if b == buf then
+      table.remove(buffer_history, i)
+      break
+    end
+  end
+
+  -- Add buffer to the end of history
+  table.insert(buffer_history, buf)
+end
+
+-- Function to remove buffer from history
+local function remove_from_history(buf)
+  for i, b in ipairs(buffer_history) do
+    if b == buf then
+      table.remove(buffer_history, i)
+      break
+    end
   end
 end
+
+-- Autocommand group for buffer history management
+vim.api.nvim_create_augroup('BufferHistory', { clear = true })
+
+-- Add buffers to history on BufEnter
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = 'BufferHistory',
+  callback = function(args)
+    add_to_history(args.buf)
+  end,
+})
+
+-- Remove buffers from history on BufDelete and BufUnload
+vim.api.nvim_create_autocmd({ 'BufDelete', 'BufUnload' }, {
+  group = 'BufferHistory',
+  callback = function(args)
+    remove_from_history(args.buf)
+  end,
+})
+
+-- Function to switch to the last buffer
+local function switch_to_last_buffer()
+  if #buffer_history < 2 then
+    vim.notify("No previous buffer to switch to.", vim.log.levels.WARN)
+    return
+  end
+
+  -- Iterate through the history in reverse order
+  for i = #buffer_history - 1, 1, -1 do
+    local buf = buffer_history[i]
+
+    if vim.api.nvim_buf_is_valid(buf) then
+      local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+
+      if not vim.tbl_contains(excluded_filetypes, ft) then
+        vim.cmd('buffer ' .. buf)
+        return
+      end
+    end
+  end
+
+  vim.notify("No previous buffer to switch to.", vim.log.levels.WARN)
+end
+
+-- List of filetypes to exclude from buffer history
+local excluded_filetypes = { 'minifiles' }  -- Add more filetypes as needed
+-- Initialize an empty buffer history
+local buffer_history = {}
 
 -- Set the keymap for <Tab> to switch to the last buffer
 vim.keymap.set('n', '<Tab>', function()
@@ -215,5 +295,5 @@ end, { noremap = true, silent = true, desc = "Insert line below" })
 
 
 vim.keymap.set('n', "'", function ()
-  MiniFiles.open()
+  MiniFiles.open(vim.api.nvim_buf_get_name(0))
 end, { noremap = true })

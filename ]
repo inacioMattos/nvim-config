@@ -8,10 +8,6 @@ require('noirbuddy').setup {
   colors = {
     primary = '#5f8787',
   },
-
-  styles = {
-    italic = true,
-  },
 }
 
 require('mini.files').setup({
