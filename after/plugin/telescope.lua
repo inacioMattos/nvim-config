@@ -9,19 +9,15 @@ vim.keymap.set('n', '<leader>pf', function()
     end
 
     local opts = {
-        file_ignore_patterns = { "node_modules" }
+        file_ignore_patterns = { "node_modules", ".vscode", "dist", "coverage", "reports" }
     }
 
-    if is_git_repo() then
-        builtin.git_files(opts)
-    else
-        builtin.find_files(opts)
-    end
+    builtin.find_files(opts)
 end, {})
 
 vim.keymap.set('n', '<C-p>', function()
     MiniFiles.close()
-    builtin.find_files({ file_ignore_patterns = { "node_modules" } })
+    builtin.find_files()
 end, {})
 
 vim.keymap.set('n', '<leader>ps', function()
