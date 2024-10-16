@@ -33,4 +33,16 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true, -- Automatically jump forward to textobj
+      keymaps = {
+        -- Use 'af' for function outer, 'if' for function inner
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+      },
+    },
+  },
 }

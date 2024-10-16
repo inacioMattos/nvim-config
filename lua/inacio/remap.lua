@@ -297,3 +297,12 @@ end, { noremap = true, silent = true, desc = "Insert line below" })
 vim.keymap.set('n', "'", function ()
   MiniFiles.open(vim.api.nvim_buf_get_name(0))
 end, { noremap = true })
+
+
+vim.keymap.set('n', 'o', "'", { noremap = true, silent = true })
+
+
+
+
+
+

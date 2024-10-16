@@ -13,6 +13,12 @@ return require('packer').startup(function(use)
 
   use 'lervag/vimtex'
 
+  -- marks.nvim
+  use {
+	  "chentoast/marks.nvim",
+	  opts = {},
+	}
+
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.2',
   -- or                            , branch = '0.1.x',
