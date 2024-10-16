@@ -20,29 +20,46 @@ require'nvim-treesitter.configs'.setup {
 
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     -- disable = function(lang, buf)
-    --     local max_filesize = 100 * 1024 -- 100 KB
-    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-    --     if ok and stats and stats.size > max_filesize then
-    --         return true
-    --     end
-    -- end,
+      --     local max_filesize = 100 * 1024 -- 100 KB
+      --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      --     if ok and stats and stats.size > max_filesize then
+      --         return true
+      --     end
+      -- end,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
+      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+      -- Using this option may slow down your editor, and you may see some duplicate highlights.
+      -- Instead of true it can also be a list of languages
+      additional_vim_regex_highlighting = false,
+    },
 
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj
-      keymaps = {
-        -- Use 'af' for function outer, 'if' for function inner
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true, -- Automatically jump forward to textobj
+        keymaps = {
+          -- Use 'af' for function outer, 'if' for function inner
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+        },
+      },
+
+      move = {
+        enable = true,
+        set_jumps = true, -- Whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]f"] = "@function.outer", -- Jump to next function start
+        },
+        goto_next_end = {
+          ["]F"] = "@function.outer", -- Jump to next function end
+        },
+        goto_previous_start = {
+          ["[f"] = "@function.outer", -- Jump to previous function start
+        },
+        goto_previous_end = {
+          ["[F"] = "@function.outer", -- Jump to previous function end
+        },
       },
     },
-  },
-}
+  }

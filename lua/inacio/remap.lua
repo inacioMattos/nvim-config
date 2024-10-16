@@ -44,10 +44,22 @@ vim.keymap.set("n", "Q", "<nop>")
 -- harpoon!
 local harpoon = require("harpoon")
 vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
-vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>1", function() 
+  MiniFiles.close()
+  harpoon:list():select(1)
+end)
+vim.keymap.set("n", "<leader>2", function() 
+  MiniFiles.close()
+  harpoon:list():select(2)
+end)
+vim.keymap.set("n", "<leader>3", function() 
+  MiniFiles.close()
+  harpoon:list():select(3)
+end)
+vim.keymap.set("n", "<leader>4", function() 
+  MiniFiles.close()
+  harpoon:list():select(4)
+end)
 vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 -- inacio
@@ -300,9 +312,5 @@ end, { noremap = true })
 
 
 vim.keymap.set('n', 'o', "'", { noremap = true, silent = true })
-
-
-
-
 
 
