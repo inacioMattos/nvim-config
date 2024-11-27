@@ -46,6 +46,7 @@ require('mini.files').setup({
   },
 })
 
+require('autoclose').setup()
 
 require('marks').setup {
   -- whether to map keybinds or not. default true

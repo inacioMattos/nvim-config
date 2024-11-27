@@ -7,7 +7,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+	use 'm4xshen/autoclose.nvim'
 
   use 'fxn/vim-monochrome'
 
@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
 --]]
   use {
     'nvim-treesitter/nvim-treesitter',
+    commit = "92725df",
     run = function()
       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
       ts_update()
