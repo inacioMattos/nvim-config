@@ -279,6 +279,9 @@ end
 vim.keymap.set('x', '<S-Tab>', remove_tab, { noremap = true, silent = true })
 
 
+-- Set the keymap for visual line mode to remove a tab
+vim.keymap.set('i', '<S-Tab>', remove_tab, { noremap = true, silent = true })
+
 -- Define a command to insert LaTeX snippet
 vim.api.nvim_set_keymap('n', '<Leader>lt', '<ESC>:lua InsertLatexSnippet()<CR>', { noremap = true, silent = true })
 
