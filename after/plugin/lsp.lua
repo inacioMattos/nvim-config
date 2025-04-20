@@ -177,3 +177,15 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
+
+-- CUDA
+require('lspconfig').clangd.setup{
+  cmd = {
+    "/opt/homebrew/opt/llvm/bin/clangd",
+    "--query-driver=/usr/local/cuda-12.1/bin/nvcc,*",
+    "--background-index",
+    "--pch-storage=memory",
+  },
+  filetypes = { "cuda", "cpp", "c" },
+}
+
