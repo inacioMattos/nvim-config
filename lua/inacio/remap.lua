@@ -84,18 +84,9 @@ vim.keymap.set('n', 'q', 'b', { noremap = true })
 vim.keymap.set('n', 'q', 'b', { noremap = true })
 
 -- create option navigation when in insert mode
-vim.keymap.set('i', '<M-Right>', '<Right><C-Right>', { noremap = true })
-vim.keymap.set('i', '<M-Left>', '<C-o>b', { noremap = true })
+vim.keymap.set('i', '<C-Right>', '<Right><C-Right>', { noremap = true })
+vim.keymap.set('i', '<C-Left>', '<Left><C-Left>', { noremap = true })
 vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true })
--- same but macos can be weird with how it understands option+left/right
-local o = vim.opt
-o.timeout     = true
-o.timeoutlen  =  1 -- 50 ms is effectively instant
-o.ttimeout    = false    -- turn off the special key‐code wait
--- now both the “Esc+b” and plain Esc come through in ≤50 ms
-vim.keymap.set('i', '\x1bb', '<C-o>b', { noremap=true, silent=true })
-vim.keymap.set('i', '\x1bf', '<C-o>w', { noremap=true, silent=true })
-
 
 -- create toggle for option+i to switch between insert and normal mode
 vim.keymap.set('i', '<M-i>', '<Esc>', { noremap = true })
