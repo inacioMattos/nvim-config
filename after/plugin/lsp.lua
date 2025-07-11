@@ -14,6 +14,11 @@ require('noirbuddy').setup {
   },
 }
 
+vim.cmd [[
+  highlight LineNr guifg=#707070
+  highlight CursorLineNr guifg=#707070
+]]
+
 require('mini.files').setup({
   mappings = {
     close       = "'",
