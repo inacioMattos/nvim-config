@@ -1,0 +1,33 @@
+font-family = MDIO Nerd Font Plus Font Awesome Plus Material Design Icons
+font-size = 18
+theme = GruvboxDarkHard
+adjust-cell-height = 35%
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+macos-titlebar-style = tabs
+window-padding-balance = true
+window-save-state = always
+window-colorspace = "display-p3"
+background = 18181a
+
+background-opacity = 1
+background-blur-radius = 20
+
+macos-icon = custom-style
+macos-icon-screen-color = 18181a
+macos-icon-frame = chrome
+
+window-title-font-family = MDIO Nerd Font Plus Font Awesome Plus Material Design Icons
+
+confirm-close-surface = false
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+adjust-underline-position = 4
+adjust-underline-thickness = 0
+
+macos-option-as-alt = left
+
+scrollback-limit = 32212254720
