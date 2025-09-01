@@ -177,6 +177,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+-- skip jdtls bc nvim-jdtls setups itself
+lsp.skip_server_setup({ 'jdtls' })
+
 lsp.setup()
 
 vim.diagnostic.config({

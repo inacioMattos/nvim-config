@@ -7,13 +7,15 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-	use 'm4xshen/autoclose.nvim'
+	use { 'm4xshen/autoclose.nvim', commit = 'b2077aa' }
 
   use 'fxn/vim-monochrome'
 
   use 'mg979/vim-visual-multi'
 
   use 'lervag/vimtex'
+
+  use { 'mfussenegger/nvim-jdtls', ft = { 'java' } }
 
   -- marks.nvim
   use {
@@ -23,6 +25,7 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.2',
+    commit = '2d9b061',
   -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
@@ -30,17 +33,19 @@ return require('packer').startup(function(use)
   use {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
+    commit = 'a84ab82',
     dependencies = { "nvim-lua/plenary.nvim" }
   }
 
 
-  use { 'echasnovski/mini.files', version = '*' }
-  use { 'echasnovski/mini.colors', version = '*' }
-  use { 'echasnovski/mini.base16', version = '*' }
+  use { 'echasnovski/mini.files', commit = '6abe854', version = '*' }
+  use { 'echasnovski/mini.colors', version = '*', commit = 'd64b1c0' }
+  use { 'echasnovski/mini.base16', version = '*', commit = '97abc91' }
   use { 'echasnovski/mini.icons', version = false }
 
   use {
 	  "jesseleite/nvim-noirbuddy",
+    commit = '7fa6c89',
 	  requires = { "tjdevries/colorbuddy.nvim" }
 	}
 
@@ -69,24 +74,26 @@ return require('packer').startup(function(use)
 
   use {
     'VonHeikemen/lsp-zero.nvim',
+    commit = '9a68651',
     branch = 'v2.x',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
+      {'neovim/nvim-lspconfig', commit = '4ae9796'},             -- Required
       {                                      -- Optional
         'williamboman/mason.nvim',
+        commit = 'e2f7f90',
         run = function()
           pcall(vim.cmd, 'MasonUpdate')
         end,
       },
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      {'williamboman/mason-lspconfig.nvim', commit = '43894ad'}, -- Optional
   
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/nvim-cmp', commit = 'ed31156'},     -- Required
       {'hrsh7th/cmp-nvim-lsp'}, -- Required
       {'L3MON4D3/LuaSnip'},     -- Required
     };
 
-    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async', commit = '1ebb9ea'}
   }
 end)
