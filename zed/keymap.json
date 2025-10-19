@@ -1,0 +1,145 @@
+[
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-'": "terminal_panel::ToggleFocus",
+      "alt-d": "pane::SplitRight",
+      "shift-alt-d": "pane::SplitDown",
+      "alt-1": ["workspace::ActivatePane", 0],
+      "alt-2": ["workspace::ActivatePane", 1],
+      "alt-3": ["workspace::ActivatePane", 2],
+      "alt-4": ["workspace::ActivatePane", 3],
+      "cmd-1": ["pane::ActivateItem", 0],
+      "cmd-2": ["pane::ActivateItem", 1],
+      "cmd-3": ["pane::ActivateItem", 2],
+      "cmd-4": ["pane::ActivateItem", 3],
+      "cmd-5": ["pane::ActivateItem", 4],
+      "cmd-6": ["pane::ActivateItem", 5],
+      "cmd-7": ["pane::ActivateItem", 6],
+      "cmd-8": ["pane::ActivateItem", 7],
+      "cmd-9": ["pane::ActivateItem", 8],
+      "cmd-0": "pane::ActivateLastItem"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-1": ["pane::ActivateItem", 0],
+      "cmd-2": ["pane::ActivateItem", 1],
+      "cmd-3": ["pane::ActivateItem", 2],
+      "cmd-4": ["pane::ActivateItem", 3],
+      "cmd-5": ["pane::ActivateItem", 4],
+      "cmd-6": ["pane::ActivateItem", 5],
+      "cmd-7": ["pane::ActivateItem", 6],
+      "cmd-8": ["pane::ActivateItem", 7],
+      "cmd-9": ["pane::ActivateItem", 8],
+      "cmd-0": "pane::ActivateLastItem",
+
+      "ctrl-'": "terminal_panel::ToggleFocus",
+
+      "alt-d": "pane::SplitRight",
+      "shift-alt-d": "pane::SplitDown",
+      "alt-1": ["workspace::ActivatePane", 0],
+      "alt-2": ["workspace::ActivatePane", 1],
+      "alt-3": ["workspace::ActivatePane", 2],
+      "alt-4": ["workspace::ActivatePane", 3],
+
+      "cmd-;": "editor::ToggleComments"
+    }
+  },
+
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "j": "project_panel::CollapseSelectedEntry",
+      "k": "menu::SelectPrevious",
+      "l": "menu::SelectNext",
+      "ç": "project_panel::ExpandSelectedEntry",
+
+      "space c f": "project_panel::CollapseAllEntries",
+      "alt-enter": "project_panel::OpenSplitHorizontal",
+      "n": "project_panel::NewFile"
+    }
+  },
+
+  // vim stuff
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+      "j": "vim::Left",
+      "k": "vim::Up",
+      "l": "vim::Down",
+      "ç": "vim::Right",
+
+      "q": "vim::PreviousWordStart",
+
+      "alt-u": "editor::Redo",
+
+      "J": "vim::StartOfLine",
+      "-": "vim::EndOfLine",
+      "L": "editor::MoveToEnd",
+
+      "cmd-;": "editor::ToggleComments",
+
+      "c f": "editor::Fold",
+      "space c f": "editor::FoldAll",
+      "c f 2": ["editor::FoldAtLevel", 2],
+      "c f 3": ["editor::FoldAtLevel", 3],
+      "c f 4": ["editor::FoldAtLevel", 4],
+      "c f 5": ["editor::FoldAtLevel", 5],
+      "c f 6": ["editor::FoldAtLevel", 6],
+      "c f 7": ["editor::FoldAtLevel", 7],
+      "c o": "editor::UnfoldLines",
+      "space c o": "editor::UnfoldAll",
+      "cmd-i": ["vim::SwitchMode", "Insert"],
+
+      "space f": "vim::Search",
+      "n": "search::SelectNextMatch",
+      "shift-n": "search::SelectPreviousMatch",
+
+      "g g": "vim::InsertLineAbove",
+      "G G": "vim::InsertLineBelow",
+      "enter": ["workspace::SendKeystrokes", "g g escape"],
+      "space enter": ["workspace::SendKeystrokes", "G G escape"],
+
+      "t t": "tab_switcher::Toggle",
+      "tab": ["workspace::SendKeystrokes", "t t enter"],
+
+      "space p f": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work only in normal mode
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      // visual, visual line & visual block modes
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in insert mode
+      "cmd-i": ["vim::SwitchMode", "Normal"],
+      "cmd-;": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space c f": "editor::FoldAll"
+    }
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space c o": "editor::UnfoldAll"
+    }
+  }
+]
+
