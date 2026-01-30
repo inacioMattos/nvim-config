@@ -114,3 +114,9 @@ vim.keymap.set('n', '<C-j>', '<C-w>h', { noremap = true, desc = 'Window left' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true, desc = 'Window up' })
 vim.keymap.set('n', '<C-l>', '<C-w>j', { noremap = true, desc = 'Window down' })
 vim.keymap.set('n', '<C-;>', '<C-w>l', { noremap = true, desc = 'Window right' })
+
+-- Run cpp file
+vim.keymap.set("n", "<F5>", function()
+  vim.cmd("w")
+  vim.cmd("split | terminal clang++ % -o %<:p && ./%")
+end, { desc = "Compile and run C++ in terminal split" })
