@@ -1,1 +1,19 @@
-/home/inacio/.config/omarchy/current/theme/neovim.lua
+return {
+	{
+		"everviolet/nvim",
+		name = "evergarden",
+		opts = {
+			theme = {
+				variant = "fall",
+				accent = "skye",
+			},
+		},
+	},
+	{
+		"LazyVim/LazyVim",
+		opts = {
+			colorscheme = "evergarden",
+			background = "soft",
+		},
+	},
+}
