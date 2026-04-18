@@ -26,6 +26,15 @@ return {
         gpu_arch = "sm_120", -- Change this to match your GPU!
         debug = false,       -- Set to true for debugging
       })
+
+      -- Disable inlay hints for CUDA files
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "cuda",
+        callback = function(args)
+          vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+        end,
+        desc = "Disable inlay hints for CUDA",
+      })
     end,
   },
 

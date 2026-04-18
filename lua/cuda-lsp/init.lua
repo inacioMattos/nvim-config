@@ -415,6 +415,18 @@ function M.setup(opts)
     desc = "Attach dual CUDA LSP clients",
   })
 
+  -- Disable inlay hints for CUDA files
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      if vim.bo[args.buf].filetype == "cuda" then
+        vim.defer_fn(function()
+          vim.lsp.inlay_hint.enable(false, { bufnr = args.buf })
+        end, 200)
+      end
+    end,
+    desc = "Disable inlay hints for CUDA buffers",
+  })
+
   -- Update device ranges on text change
   vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
     pattern = { "*.cu", "*.cuh" },
