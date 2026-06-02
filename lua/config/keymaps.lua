@@ -120,3 +120,9 @@ vim.keymap.set("n", "<F5>", function()
   vim.cmd("w")
   vim.cmd("split | terminal clang++ % -o %<:p && ./%")
 end, { desc = "Compile and run C++ in terminal split" })
+
+-- Replace in entire buffer (normal mode)
+vim.keymap.set("n", "<leader>r", ":%s/", { desc = "Replace in buffer" })
+
+-- Replace in visual selection (visual/select mode)
+vim.keymap.set("x", "<leader>r", [[:s/\%V//g<Left><Left><Left>]], { desc = "Replace in selection" })
